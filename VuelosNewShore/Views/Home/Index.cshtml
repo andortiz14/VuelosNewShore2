@@ -1,0 +1,55 @@
+﻿@model VuelosNewShore.Models.EntidadVuelo
+
+
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <br />
+            <table width="100%">
+                <tr>
+                    <td colspan="8" id="trSaldo" runat="server" style="text-align: center; border-radius: 12px; font-size: 20px; background-color: #044182; color: aliceblue">
+                        Consulte su Vuelo
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Origen:</label>
+                        @Html.DropDownListFor(d => d.Origin, (IEnumerable<SelectListItem>)(new[] {
+                                            new SelectListItem() { Text="Seleccione..."},
+                                            new SelectListItem() { Value = "BOG", Text = "BOGOTA" },
+                                            new SelectListItem() { Value = "MDE", Text = "MEDELLIN" },
+                                             new SelectListItem() { Value = "CTG", Text = "CARTAGENA" },
+                                            new SelectListItem() { Value = "PEI", Text = "PEREIRA" }
+                                         }), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(d => d.Origin, null, new { @class = "danger" })
+                    </td>
+                    <td>
+                        <label>Destino:</label>
+                        @Html.DropDownListFor(d => d.Destination, (IEnumerable<SelectListItem>)(new[] {
+                                            new SelectListItem() { Text="Seleccione..."},
+                                            new SelectListItem() { Value = "BOG", Text = "BOGOTA" },
+                                            new SelectListItem() { Value = "MDE", Text = "MEDELLIN" },
+                                             new SelectListItem() { Value = "CTG", Text = "CARTAGENA" },
+                                            new SelectListItem() { Value = "PEI", Text = "PEREIRA" }
+                                         }), new { @class = "form-control" })
+                    </td>
+                    <td>
+                        <label>Fecha:</label><br />
+                        @Html.EditorFor(d => d.From, "", new { @class = "form-control" })
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:right">
+            <input type="submit" value="Buscar" class="btn-primary" />
+        </div>
+
+    </div>
+}
+
+
