@@ -1,8 +1,6 @@
 ﻿
 
 
-@using (Html.BeginForm("Guardar", "Home", FormMethod.Get))
-{
     <div class="row">
         <div class="col-lg-12">
             <br />
@@ -34,7 +32,17 @@
                         <td>@vuelos.Price</td>
                         <td>@vuelos.Currency</td>
                         <td>
-                            <a class="btn btn-danger" href="~/Home/Guardar/@vuelos.DepartureStation">Guardar </a>
+                            @using (Html.BeginForm("Guardar", "Home", new {
+                                Fecha = vuelos.DepartureDate,
+                                Origen = vuelos.DepartureStation,
+                                Destino = vuelos.ArrivalStation,
+                                NumeroVuelo = vuelos.FlightNumber,
+                                Precio = vuelos.Price,
+                                Moneda = vuelos.Currency}))
+                            {
+                              
+                                <input class="button btn-success" CssClass="btn btn-success float-center mr-1" id="submit" type="submit" value="Registrar Vuelo" />
+                            }
                         </td>
                     </tr>
                 }
@@ -42,4 +50,4 @@
             </table>
         </div>
     </div>
-}
+

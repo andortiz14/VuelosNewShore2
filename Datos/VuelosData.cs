@@ -66,7 +66,7 @@ namespace Datos
             try
             {
                 DataBase.Open();
-                DataBase.CreateCommand("InsertAccionista");
+                DataBase.CreateCommand("InsertVuelo");
 
                 DataBase.CreateParameter("@VloId", (int)ParameterDirection.Output);
                 DataBase.CreateParameter("@VloFechaVuelo", Vuelos.DepartureDate);

@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using OpenQA.Selenium.Remote;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using VuelosNewShore.Models;
+using System.Web.UI;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace VuelosNewShore.Controllers
 {
@@ -66,9 +68,35 @@ namespace VuelosNewShore.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        public ActionResult Guardar(string DepartureStation)
+        public ActionResult Guardar(string Fecha, string Origen, string Destino, string NumeroVuelo, string Precio, string Moneda)
         {
-            return View();
+
+            try
+            {
+                RespuestaVuelos respuesta = new RespuestaVuelos();
+                VuelosNeg vuelosNeg = new VuelosNeg();
+
+                respuesta.DepartureDate = Convert.ToDateTime(Fecha);
+                respuesta.DepartureStation = Origen;
+                respuesta.ArrivalStation = Destino;
+                respuesta.FlightNumber = NumeroVuelo;
+                respuesta.Price = decimal.Parse(Precio);
+                respuesta.Currency = Moneda;
+
+                int id = vuelosNeg.InsertVuelo(respuesta);
+
+                if (id > 0) 
+                {
+                    return View();
+                }
+                else { return Redirect("Index"); }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
         
 
