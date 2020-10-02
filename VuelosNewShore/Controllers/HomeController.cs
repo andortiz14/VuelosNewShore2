@@ -66,5 +66,11 @@ namespace VuelosNewShore.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        public ActionResult Guardar(string DepartureStation)
+        {
+            return View();
+        }
+        
+
     }
 }

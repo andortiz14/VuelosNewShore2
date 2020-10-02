@@ -4,6 +4,7 @@ using Entidades;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using Entidades;
 using System.Web;
 using System.Linq;
 using System.Web.Script.Serialization;
@@ -58,6 +59,38 @@ namespace Datos
             }
 
             return result;
+        }
+        public int InsertVuelos(RespuestaVuelos Vuelos)
+        {
+            BaseDatos DataBase = new BaseDatos();
+            try
+            {
+                DataBase.Open();
+                DataBase.CreateCommand("InsertAccionista");
+
+                DataBase.CreateParameter("@VloId", (int)ParameterDirection.Output);
+                DataBase.CreateParameter("@VloFechaVuelo", Vuelos.DepartureDate);
+                DataBase.CreateParameter("@VloOrigen", Vuelos.DepartureStation);
+                DataBase.CreateParameter("@VloDestino", Vuelos.ArrivalStation);               
+                DataBase.CreateParameter("@VloNumeroVuelo", Vuelos.FlightNumber);
+                DataBase.CreateParameter("@VloPrecio", Vuelos.Price);
+                DataBase.CreateParameter("@VloMoneda", Vuelos.Currency);
+                
+
+                int Resultado = -1;
+                Resultado = Convert.ToInt32(DataBase.EjecutarEscalar());
+               
+                return Resultado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DataBase.Close();
+            }
         }
     }
 }

@@ -1,37 +1,45 @@
 ﻿
 
-<div class="row">
-    <div class="col-lg-12">
-        <br />
-        <table class="table" width="100%">
-            <tr>
-                <td colspan="8">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="8" style="text-align: center; border-radius: 12px; font-size: 20px; background-color: #044182; color: aliceblue">
-                    Vuelos Disponibles
-                </td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <th>Origen</th>
-                <th>Destino</th>
-                <th>Numero de vuelo</th>
-                <th>Precio Valor</th>
-                <th>Moneda</th>
-            </tr>
-            @foreach (var vuelos in Model)
-            {
-                <tr>
-                    <td>@vuelos.DepartureDate</td>
-                    <td>@vuelos.DepartureStation</td>
-                    <td>@vuelos.ArrivalStation</td>
-                    <td>@vuelos.FlightNumber</td>
-                    <td>@vuelos.Price</td>
-                    <td>@vuelos.Currency</td>
-                </tr>
-            }
 
-        </table>
+@using (Html.BeginForm("Guardar", "Home", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <br />
+            <table class="table" width="100%">
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="8" style="text-align: center; border-radius: 12px; font-size: 20px; background-color: #044182; color: aliceblue">
+                        Vuelos Disponibles
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Numero de vuelo</th>
+                    <th>Precio Valor</th>
+                    <th>Moneda</th>
+                    <th></th>
+                </tr>
+                @foreach (var vuelos in Model)
+                {
+                    <tr>
+                        <td>@vuelos.DepartureDate</td>
+                        <td>@vuelos.DepartureStation</td>
+                        <td>@vuelos.ArrivalStation</td>
+                        <td>@vuelos.FlightNumber</td>
+                        <td>@vuelos.Price</td>
+                        <td>@vuelos.Currency</td>
+                        <td>
+                            <a class="btn btn-danger" href="~/Home/Guardar/@vuelos.DepartureStation">Guardar </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
     </div>
-</div>
+}

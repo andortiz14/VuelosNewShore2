@@ -16,5 +16,10 @@ namespace Negocio
             return New.GetVuelos(url, VueloEntidad, method);
 
         }
+        public int InsertVuelo(RespuestaVuelos vuelos)
+        {
+            Datos.VuelosData New = new Datos.VuelosData();
+            return New.InsertVuelos(vuelos);
+        }
     }
 }
